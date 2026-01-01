@@ -1,0 +1,5 @@
+ativo,preco_medio,quantidade,categoria,ticker
+PETR4,28,100,ações,PETR4:BVMF
+ITUB4,25,80,ações,ITUB4:BVMF
+TESOURO IPCA,1000,2,renda fixa,
+FII XPML11,100,15,fii,XPML11:BVMF
