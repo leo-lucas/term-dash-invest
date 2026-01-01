@@ -44,9 +44,14 @@ class Ativo:
 def _to_decimal(value: str, field: str) -> Decimal:
     try:
         normalized = value.strip()
-        if "," in normalized and "." in normalized:
-            normalized = normalized.replace(".", "").replace(",", ".")
-        elif "," in normalized:
+        last_dot = normalized.rfind(".")
+        last_comma = normalized.rfind(",")
+        if last_dot != -1 and last_comma != -1:
+            if last_dot > last_comma:
+                normalized = normalized.replace(",", "")
+            else:
+                normalized = normalized.replace(".", "").replace(",", ".")
+        elif last_comma != -1:
             normalized = normalized.replace(",", ".")
         return Decimal(normalized)
     except (InvalidOperation, AttributeError):
