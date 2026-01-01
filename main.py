@@ -43,7 +43,11 @@ class Ativo:
 
 def _to_decimal(value: str, field: str) -> Decimal:
     try:
-        normalized = value.replace(".", "").replace(",", ".")
+        normalized = value.strip()
+        if "," in normalized and "." in normalized:
+            normalized = normalized.replace(".", "").replace(",", ".")
+        elif "," in normalized:
+            normalized = normalized.replace(",", ".")
         return Decimal(normalized)
     except (InvalidOperation, AttributeError):
         raise ValueError(f"Valor inválido em '{field}': {value!r}")
